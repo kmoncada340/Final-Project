@@ -31,7 +31,6 @@ def plot(df: pd.DataFrame,x: int, y: int):
     plt.xlabel(x)
     plt.ylabel(y)
     plt.title("The Plot of " + x +" versus "+ y)
-    #plt.colorbar(label=df['k-means']) 
     plt.show()
 
 #   MainFunction 
@@ -42,7 +41,7 @@ def main():
         movies= pd.read_excel(myData, header = 0)
         MAINAI = movies.copy(deep=True) #immutable copy of movies
 
-        x_val = 'Rating' #Preset Variables
+        x_val = 'Rating' #Placeholder Variables
         y_val = 'Production Studio'
         k_val = 5  #number of clusters
         n_val = 5 #number of movies
@@ -87,10 +86,10 @@ def main():
                 user_input = input("\nPress ENTER to continue:\t")
 
             for title in ai_Mov['Movie Title']:
-                movies = movies[movies['Movie Title'] != title]
+                movies = movies[movies['Movie Title'] != title]#omits the sample movies from the movies
 
             if len(movies) >= n_val:
-                ai_Mov = movies.sample(n_val, replace=False)#gets new movies while avoiding duplicates
+                ai_Mov = movies.sample(n_val, replace=False) #gets new movies while avoiding duplicates
             else:
                 print('There are not enough movies in the cluster. Try another cluster value')
 
